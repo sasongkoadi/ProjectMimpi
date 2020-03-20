@@ -4,14 +4,22 @@ function showTodos(){
 	console.log(todos)
 }
 
-function addTodos(){
-	todos.push('add new item')
+function addTodos(addNewTodo){
+	todos.push(addNewTodo)
+  showTodos()
 }
 
-function removeTodos(angka){
-	todos.splice(angka,1)
+function removeTodos(urutan,jumlah){
+	todos.splice(urutan-1,jumlah)
+  showTodos()
 }
 
 function editTodo(angka,edit){
   todos[angka-1]=edit
+  showTodos()
+}
+function showInformation(){
+  console.log('Add new Todos list using addTodos(tambah todo list)')
+  console.log('remove Todos list using removeTodos(pilih todo,jumlah todo yang mau dihapus)')
+  console.log('Edit Todos list using editTodo(pilih todo list, rename todo list)')
 }
