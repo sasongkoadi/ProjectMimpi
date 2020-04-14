@@ -46,5 +46,15 @@ var todoList = {
     todo.complete = !todo.complete;
     this.showTodosList();
   },
+  addTodosLooping: function(howManyLoop){
+    for(var x = 1 ; x < howManyLoop+1 ; x++){
+      this.todos.push({
+        kegiatan: 'Belajar '+x,
+        status: false
+      })
+      console.log(this.todos[this.todos.length-x])
+    };
+    this.showTodosList();
+  },
 }
 
