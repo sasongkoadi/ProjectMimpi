@@ -47,12 +47,12 @@ var todoList = {
     this.showTodosList();
   },
   addTodosLooping: function(howManyLoop){
-    for(var x = 1 ; x < howManyLoop+1 ; x++){
+    for(var x = 0 ; x < howManyLoop+1 ; x++){
       this.todos.push({
         kegiatan: 'Belajar '+x,
         status: false
       })
-      console.log(this.todos[this.todos.length-x])
+      console.log(this.todos[this.todos.length-1])
     };
     this.showTodosList();
   },
