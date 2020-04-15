@@ -7,8 +7,12 @@ var todoList = {
     } else {
     console.log('My Todo :')
     for (var x = 0; x < this.todos.length; x++){
-      console.log(this.todos[x])
-      } 
+      if(this.todos[x].complete == true){
+        console.log('( X )',this.todos[x].todoList)
+      } else {
+        console.log('(   )',this.todos[x].todoList)
+      }
+     } 
     }
   },
   // This function to add item data on array var todos
@@ -59,7 +63,7 @@ var todoList = {
       for(var x = 0; x < howManyLoop; x++){
         this.todos.push({
           todoList: 'Belajar'+ x,
-          status: false,
+          complete: false,
         })
       } 
       this.showTodosList();
@@ -67,7 +71,7 @@ var todoList = {
       for (var y = this.todos.length; y < (arrayLength+howManyLoop); y++){
         this.todos.push({
           todoList: 'Belajar'+ y,
-          status: false,
+          complete: false,
         })
       }
       this.showTodosList();
