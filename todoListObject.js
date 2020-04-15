@@ -2,7 +2,14 @@ var todoList = {
   todos:[],
   // This function to show data array on var todos
   showTodosList: function (){
-    console.log('My Todo :', this.todos)
+    if (this.todos.length == 0){
+      console.log('This todos is empty')
+    } else {
+    console.log('My Todo :')
+    for (var x = 0; x < this.todos.length; x++){
+      console.log(this.todos[x])
+      } 
+    }
   },
   // This function to add item data on array var todos
   addTodo: function(newItem) {
@@ -47,14 +54,23 @@ var todoList = {
     this.showTodosList();
   },
   addTodosLooping: function(howManyLoop){
-    for(var x = 0 ; x < howManyLoop+1 ; x++){
-      this.todos.push({
-        kegiatan: 'Belajar '+x,
-        status: false
-      })
-      console.log(this.todos[this.todos.length-1])
-    };
-    this.showTodosList();
-  },
+    var arrayLength = this.todos.length
+    if (this.todos.length == 0) {
+      for(var x = 0; x < howManyLoop; x++){
+        this.todos.push({
+          todoList: 'Belajar'+ x,
+          status: false,
+        })
+      } 
+      this.showTodosList();
+    } else {
+      for (var y = this.todos.length; y < (arrayLength+howManyLoop); y++){
+        this.todos.push({
+          todoList: 'Belajar'+ y,
+          status: false,
+        })
+      }
+      this.showTodosList();
+     };
+   },
 }
-
