@@ -47,14 +47,30 @@ var todoList = {
     this.showTodosList();
   },
   // This function to edit complete boolean value
-  changeToggleComplete: function(number){
-    this.todos[number-1].complete = !this.todos[number-1].complete;
+  changeToggleCompleteAll: function(){
+    var completeTodos = 0
+    var totalTodos = this.todos.length
+    for (var i = 0; i < this.todos.length; i++){
+      if(this.todos[i].complete === true){
+        completeTodos++
+      }
+    }
+    if (totalTodos === completeTodos) {
+      for(var x = 0; x < this.todos.length; x++){
+        this.todos[x].complete = false
+      }
+    } else {
+      for (var y = 0; y < this.todos.length; y++){
+        this.todos[y].complete = true
+      }
+    }
     this.showTodosList();
   },
   // This function using another line of code with same result
-  changeToggleCompleteTesting: function (number){
-    var todo = this.todos[number-1];
-    todo.complete = !todo.complete;
+  changeToggleComplete: function (number){
+    /*var todo = this.todos[number-1];
+    todo.complete = !todo.complete;*/
+    this.todos[number-1].complete = !this.todos[number-1].complete
     this.showTodosList();
   },
   addTodosLooping: function(howManyLoop){
