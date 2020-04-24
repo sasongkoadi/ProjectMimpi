@@ -6,8 +6,27 @@
 
   <body>
     <h1>Todo List</h1>
-    <button id="displayTodosButton">Display Todo</button>
-    <button id="toggleAllTodos">Toggle All</button>
+   <div>
+    <button onClick="handlers.displayTodosButton()">Display Todo</button>
+    <button onClick="handlers.toggleAll()">Toggle All</button>
+   </div>
+   <div>
+     <button onClick="handlers.addTodo()">Add Todo</button>
+     <input id="addTodoTextInput" type="text/number">
+   </div>
+   <div>
+     <button onClick='handlers.editTodo()'>Edit Todo</button>
+     <input id="editNumberInput" type="number">
+     <input id="editTextInput" type="text/number">
+   </div>
+   <div>
+     <button onClick='handlers.deleteTodo()'>Delete Todo</button>
+     <input type="number" id="positionDeleteInput" placeholder='Insert Position Todo'/>
+   </div>
+   <div>
+     <button onClick='handlers.toggleComplete()'>Toggle Complete</button>
+     <input type="number" id="positionToggleComplete" placeholder='Insert Postion Todo'/>
+   </div>
   <script src="library/script.js"></script>
   </body>
 
