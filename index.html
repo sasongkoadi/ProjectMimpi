@@ -6,10 +6,7 @@
 
   <body>
     <h1>Todo List</h1>
-   <div>
-    <button onClick="handlers.displayTodosButton()">Display Todo</button>
-    <button onClick="handlers.toggleAll()">Toggle All</button>
-   </div>
+
    <div>
      <button onClick="handlers.addTodo()">Add Todo</button>
      <input id="addTodoTextInput" type="text/number">
@@ -26,6 +23,11 @@
    <div>
      <button onClick='handlers.toggleComplete()'>Toggle Complete</button>
      <input type="number" id="positionToggleComplete" placeholder='Insert Postion Todo'/>
+     <button onClick="handlers.toggleAll()">Toggle All</button>
+   </div>
+   <div>
+     <ul>
+     </ul>
    </div>
   <script src="library/script.js"></script>
   </body>
