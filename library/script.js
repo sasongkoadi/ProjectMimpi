@@ -11,7 +11,6 @@ var todoList = {
         complete: false
       });
     }
-    view.displayTodo();
   },
 
   addTodo: function(newTodo){
@@ -19,18 +18,14 @@ var todoList = {
       kegiatan: newTodo,
       complete: false,
     })
-    view.displayTodo();
   },
 
   editTodo: function(number, editTodo){
     this.todos[number-1].kegiatan = editTodo;
-    view.displayTodo();
-    
   },
 
   deleteTodos: function(number,howMany){
     this.todos.splice(number-1,howMany);
-    view.displayTodo();
   },
 
   toggleAll: function(){
@@ -51,25 +46,24 @@ var todoList = {
         this.todos[y].complete = true
       }
     }
-    view.displayTodo();
   },
 
   completeTodo: function(number){
     var todo = this.todos;
-    console.log(todo);
     todo[number-1].complete = !todo[number-1].complete
-    view.displayTodo();
   }
 };
 
 var handlers = {
   toggleAll: function(){
     todoList.toggleAll();
+    view.displayTodo();
   },
   addTodo: function() {
     var addTodoText = document.getElementById('addTodoTextInput');
     todoList.addTodo(addTodoText.value);
     addTodoText.value = '';
+    view.displayTodo();
   },
   editTodo: function(){
     var editNumberInput = document.getElementById('editNumberInput');
@@ -77,16 +71,47 @@ var handlers = {
     todoList.editTodo(editNumberInput.valueAsNumber,editTextInput.value);
     editNumberInput.value = '';
     editTextInput.value = '';
+    view.displayTodo();
   },
   deleteTodo: function() {
     var positionDeleteInput = document.getElementById('positionDeleteInput');
     todoList.deleteTodos(positionDeleteInput.valueAsNumber,1);
     positionDeleteInput.value = "";
+    view.displayTodo();
+  },
+  deleteAllTodos: function(){
+    var todo = todoList.todos;
+    var allTodos = todoList.todos.length;
+    todo.splice(0,allTodos); 
+    view.displayTodo();
   },
   toggleComplete: function() {
     var positionToggleComplete = document.getElementById('positionToggleComplete');
     todoList.completeTodo(positionToggleComplete.valueAsNumber);
     positionToggleComplete.value = '';
+    view.displayTodo();
+  },
+  addTodosList: function(){
+    var inputNumber = document.getElementById('addTodoTextInput');
+    todoList.addTodosList(inputNumber.valueAsNumber);
+    inputNumber.value = ''
+    view.displayTodo();
+  },
+  hiddenExtra: function(){
+    document.getElementById('addTodoButton').innerHTML= 'Add Random Todo' ;
+    document.getElementById('addTodoButton').onclick = function() { handlers.addTodosList() };
+    document.getElementById('addTodoTextInput').type = 'number';
+    document.getElementById('addTodoTextInput').placeholder = 'How many';
+    document.getElementById('extra').innerHTML = 'Back';
+    document.getElementById('extra').onclick = function(){ handlers.backExtra() }
+  },
+  backExtra: function(){
+    document.getElementById('addTodoButton').innerHTML = 'Add Todo';
+    document.getElementById('addTodoButton').onclick = function(){ handlers.addTodo() }
+    document.getElementById('addTodoTextInput').type = 'text';
+    document.getElementById('addTodoTextInput').placeholder = 'Write your todo';
+    document.getElementById('extra').innerHTML = 'Extra';
+    document.getElementById('extra').onclick = function(){ handlers.hiddenExtra() }
   },
 }
 
@@ -107,7 +132,4 @@ var view = {
     }
   }
 }
-
-
-
 
