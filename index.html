@@ -8,8 +8,9 @@
     <h1>Todo List</h1>
 
    <div>
-     <button onClick="handlers.addTodo()">Add Todo</button>
-     <input id="addTodoTextInput" type="text/number">
+     <button onClick="handlers.addTodo()" id='addTodoButton'>Add Todo</button>
+     <input id="addTodoTextInput" type="text/number" placeholder="Write your todo">
+     <button onClick="handlers.hiddenExtra()" id='extra'>Extra</button>
    </div>
    <div>
      <button onClick='handlers.editTodo()'>Edit Todo</button>
@@ -17,7 +18,7 @@
      <input id="editTextInput" type="text/number">
    </div>
    <div>
-     <button onClick='handlers.deleteTodo()'>Delete Todo</button>
+     <button onClick='handlers.deleteTodo()' ondblclick='handlers.deleteAllTodos()'>Delete Todo</button>
      <input type="number" id="positionDeleteInput" placeholder='Insert Position Todo'/>
    </div>
    <div>
