@@ -1,2 +1,2 @@
 # ProjectMimpi
-![Simple Todo App] (./images/simpleTodoApp.png)
+![Simple Todo App](./images/simpleTodoApp.png)
