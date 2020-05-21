@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="styleheet" href="style.css">
+  </head>
+
+  <body>
+    <h1>Todo List</h1>
+
+   <div>
+     <button onClick="handlers.addTodo()" id='addTodoButton'>Add Todo</button>
+     <input id="addTodoTextInput" type="text/number" placeholder="Write your todo">
+     <button onClick="handlers.hiddenExtra()" id='extra'>Extra</button>
+   </div>
+   <div>
+     <button onClick="handlers.toggleAll()">Complete All</button>
+   </div>
+   <div>
+     <ul>
+     </ul>
+   </div>
+  <script src="library/script.js"></script>
+  </body>
+
+</html>
