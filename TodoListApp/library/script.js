@@ -38,10 +38,10 @@ var todoList = {
   },
 
   changeComplete: function(status){
-    var todo = todoList.todos
-    for(var i=0;i<todoList.todos.length;i++){
-      todo[i].complete = status; 
-    }
+    todoList.todos.forEach(function(todo, position){
+      return this.todos[position].complete = status; 
+    },this)
+  
   },
   
   completeTodo: function(number){
@@ -148,7 +148,7 @@ var view = {
     var todosUl = this.elementReUse.ul
     todosUl.addEventListener('click', function(){
       var elementClick = event.target;
-      if (elementClick.className === 'toggleButton')  handlers.toggleComplete(parseInt(elementClick.parentNode.id)); 
+      if (elementClick.className === 'toggleButton') return handlers.toggleComplete(parseInt(elementClick.parentNode.id)); 
       if (elementClick.className === 'editButton') return handlers.editButton(parseInt(elementClick.parentNode.id));
       if (elementClick.className === 'deleteButton') return handlers.deleteTodo(parseInt(elementClick.parentNode.id));
     })   
