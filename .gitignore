@@ -4,7 +4,8 @@
 # Edit at https://www.gitignore.io/?templates=visualstudiocode,macos
 
 #node-modules
-.NodeApp/node-app/node-modules
+NodeApp/node-app/node_modules
+node_modules
 
 ### macOS ###
 # General
