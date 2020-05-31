@@ -9,8 +9,8 @@ const personData = {
   },
 };
 
-function showPersonData(name) {
-  var data = personData.name;
+function showPersonData(person) {
+  var data = person;
   var final = "My Name is " + data.name + " I'm " + data.Age;
   return final;
 }

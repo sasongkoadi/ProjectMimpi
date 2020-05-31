@@ -16,12 +16,19 @@ function getNote(file, notes) {
 }
 
 function deleteNote(file) {
-  fs.unlink(file);
-  return console.log(chalk.inverse.red("File has deleted"));
+  fs.unlink(file, function (err) {
+    if (err) throw err;
+    console.log(chalk.inverse.red("File has deleted"));
+  });
+}
+
+function nothingToDo() {
+  return console.log(chalk.inverse.whiteBright.underline("Nothing to do"));
 }
 
 module.exports = {
   getNote,
   createFile,
   deleteNote,
+  nothingToDo,
 };

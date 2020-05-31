@@ -1,9 +1,20 @@
 const { personData, showPersonData } = require("./utilities");
-const { getNote, createFile } = require("./note");
+const { getNote, createFile, deleteNote, nothingToDo } = require("./note");
+var person;
+var fileData;
+let data;
+let file;
 
-const person = showPersonData(personData.fauzi.name, personData.fauzi.Age);
-var file = createFile(personData.fauzi.name);
-getNote(file, person);
+process.argv[2] === "sasongko"
+  ? ((fileData = process.argv[2]), (person = personData.sasongko))
+  : process.argv[2] === "fauzi"
+  ? ((fileData = process.argv[2]), (person = personData.fauzi))
+  : console.log();
 
-/* if (process.argv[2] === "add") return console.log("add notes"); */
-/* if (process.argv[2] === "remove") return console.log("delete notes"); */
+process.argv[3] === "add"
+  ? ((data = showPersonData(person)),
+    (file = createFile(fileData)),
+    getNote(file, data))
+  : process.argv[3] === "remove"
+  ? ((file = createFile(fileData)), deleteNote(file))
+  : nothingToDo();
