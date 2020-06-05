@@ -1,20 +1,49 @@
 const { personData, showPersonData } = require("./utilities");
 const { getNote, createFile, deleteNote, nothingToDo } = require("./note");
-var person;
-var fileData;
-let data;
-let file;
+const yargs = require("yargs")
 
-process.argv[2] === "sasongko"
-  ? ((fileData = process.argv[2]), (person = personData.sasongko))
-  : process.argv[2] === "fauzi"
-  ? ((fileData = process.argv[2]), (person = personData.fauzi))
-  : console.log();
+// costume version
+yargs.version('1.0.0')
 
-process.argv[3] === "add"
-  ? ((data = showPersonData(person)),
-    (file = createFile(fileData)),
-    getNote(file, data))
-  : process.argv[3] === "remove"
-  ? ((file = createFile(fileData)), deleteNote(file))
-  : nothingToDo();
+// add command
+yargs.command({
+	command: 'add',
+	describe: 'add a new note',
+	builder: {
+		title: {
+			describe: 'Note title'
+		}
+	},
+	handler: function (argv) {
+		console.log('adding a new note',argv)
+	},
+})
+
+// remove command
+yargs.command({
+	command: 'remove',
+	describe: 'remove a note',
+	handler: function (){
+		console.log('removing a note')
+	}
+})
+
+// read command
+yargs.command({
+	command: 'read',
+	describe: 'read a note',
+	handler: function (){
+		console.log('reading a note')
+	}
+})
+
+// add list
+yargs.command({
+	command: 'list',
+	describe: 'List your notes',
+	handler: function (){
+		console.log('listing your notes')
+	}
+})
+
+console.log(yargs.argv)
