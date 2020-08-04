@@ -41,7 +41,13 @@ const loadNote = function () {
 
 //This function for delete note
 const deleteNote = function (title) {
-  console.log(chalk.red.bold.inverse("You had delete", title, "Note"));
+  const notes = loadNote()
+  const searchNote = notes.filter(function(note){
+    return note.title === title
+  })
+  console.log(searchNote)
+  searchNote.splice(0,1)
+  console.log(searchNote)
 };
 
 module.exports = {
@@ -49,4 +55,5 @@ module.exports = {
   addNote: addNote,
   loadNote: loadNote,
   deleteNote: deleteNote,
-};
+}; 
+       
