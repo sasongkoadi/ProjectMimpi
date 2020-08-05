@@ -1,5 +1,6 @@
 const fs = require("fs");
 const chalk = require("chalk").default;
+
 const getNote = function () {};
 
 //This function for add note
@@ -7,7 +8,7 @@ const getNote = function () {};
 const addNote = function (title, body) {
   const notes = loadNote();
   const duplicateNote = notes.filter(function (note) {
-    return note.title === title;
+    return note.title === title.toUpperCase();
   });
   if (duplicateNote.length === 0) {
     notes.push({
@@ -15,9 +16,17 @@ const addNote = function (title, body) {
       body: body,
     });
     saveNote(notes);
-    console.log(chalk.blue.bold.inverse("New Note Added"));
+    console.log(
+      chalk.blue.bold.inverse("New Note With", title.toUpperCase(), "Added")
+    );
   } else {
-    console.log(chalk.inverse.bold.red("Note Title Taken!"));
+    console.log(
+      chalk.inverse.bold.red(
+        "Note With Title",
+        title.toUpperCase(),
+        "Was Taken!"
+      )
+    );
   }
 };
 
@@ -30,8 +39,11 @@ const saveNote = function (notes) {
 //This function for load data from notes.json and change to object
 const loadNote = function () {
   try {
+    //DataBuffer load data from notes.json
     const dataBuffer = fs.readFileSync("notes.json");
+    //dataJSON change dataBuffer to string
     const dataJSON = dataBuffer.toString();
+    //dataJSON change to object
     return JSON.parse(dataJSON);
   } catch (error) {
     return [];
@@ -41,13 +53,26 @@ const loadNote = function () {
 
 //This function for delete note
 const deleteNote = function (title) {
-  const notes = loadNote()
-  const searchNote = notes.filter(function(note){
-    return note.title === title
-  })
-  console.log(searchNote)
-  searchNote.splice(0,1)
-  console.log(searchNote)
+  const notes = loadNote();
+  //This for make new array with filter
+  const newNotes = notes.filter(function (note) {
+    return note.title !== title.toUpperCase();
+  });
+  //Check notes title
+  if (notes.length > newNotes.length) {
+    saveNote(newNotes);
+    console.log(
+      chalk.green.bold(
+        "Deleting Note With Title",
+        title.toUpperCase(),
+        "Was Successful"
+      )
+    );
+  } else {
+    console.log(
+      chalk.red.bold("This note with Title", title.toUpperCase(), "not found")
+    );
+  }
 };
 
 module.exports = {
@@ -55,5 +80,4 @@ module.exports = {
   addNote: addNote,
   loadNote: loadNote,
   deleteNote: deleteNote,
-}; 
-       
+};
