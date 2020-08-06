@@ -1,16 +1,40 @@
 const fs = require("fs");
 const chalk = require("chalk").default;
 
-const getNote = function () {};
+//This function to read note using title find
+const readNote = (title) => {
+  debugger;
+  const notes = loadNote();
+  //This function to get data using find method
+  const noteData = notes.find((note) => note.title === title.toUpperCase());
+  //This condition to show note data or notification
+  if (noteData) {
+    console.log(chalk.magenta.bold.inverse("Your Note :"));
+    console.log(chalk.blue.bold(noteData.title));
+    console.log('"', noteData.body, '"');
+  } else {
+    console.log(
+      chalk.red.bold("Note With Title", title.toUpperCase(), "Not Found")
+    );
+  }
+};
+
+const listNotes = () => {
+  debugger;
+  const notes = loadNote();
+  console.log(chalk.green.bold("Your Notes :"));
+  notes.forEach((note) => console.log(chalk.green(note.title)));
+};
 
 //This function for add note
 //Before adding note, it will load note from file and check duplicate note
-const addNote = function (title, body) {
+const addNote = (title, body) => {
+  debugger;
   const notes = loadNote();
-  const duplicateNote = notes.filter(function (note) {
-    return note.title === title.toUpperCase();
-  });
-  if (duplicateNote.length === 0) {
+  const duplicateNote = notes.find(
+    (note) => note.title === title.toUpperCase()
+  );
+  if (!duplicateNote) {
     notes.push({
       title: title.toUpperCase(),
       body: body,
@@ -31,13 +55,15 @@ const addNote = function (title, body) {
 };
 
 //this function for change object to json and save to notes.json file
-const saveNote = function (notes) {
+const saveNote = (notes) => {
+  debugger;
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
 };
 
 //This function for load data from notes.json and change to object
-const loadNote = function () {
+const loadNote = () => {
+  debugger;
   try {
     //DataBuffer load data from notes.json
     const dataBuffer = fs.readFileSync("notes.json");
@@ -52,12 +78,10 @@ const loadNote = function () {
 };
 
 //This function for delete note
-const deleteNote = function (title) {
+const deleteNote = (title) => {
   const notes = loadNote();
   //This for make new array with filter
-  const newNotes = notes.filter(function (note) {
-    return note.title !== title.toUpperCase();
-  });
+  const newNotes = notes.filter((note) => note.title !== title.toUpperCase());
   //Check notes title
   if (notes.length > newNotes.length) {
     saveNote(newNotes);
@@ -76,8 +100,9 @@ const deleteNote = function (title) {
 };
 
 module.exports = {
-  getNote: getNote,
+  readNote: readNote,
   addNote: addNote,
   loadNote: loadNote,
   deleteNote: deleteNote,
+  listNotes: listNotes,
 };
