@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <h1>Uji Coba Vue 2 </h1>
-        <input  @input="onInput"  placeholder="Seach Video" />
+    <div class="search">
+        <h1>Simple YOUTUBE Clone</h1>
+        <p>Using Vue.js V2 with Youtube API Service</p>
+        <input @keyup.enter="onInput"  placeholder="Seach Video" /> 
     </div>
 </template>
 
@@ -17,11 +18,19 @@ export default {
 </script>
 
 <style scoped>
-    h1 {
+    .search {
+        margin-top: 50px;
+    }
+    h1  {
         text-align: center;
+    }
+    p {
+        text-align: center;
+        margin-bottom: 30px;
     }
     input {
         width: 75%;
+        border: 2px solid,
     }
     div {
         text-align: center;

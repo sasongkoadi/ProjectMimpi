@@ -6,7 +6,7 @@ const forecast = (latitude, longitude, callback) => {
     latitude +
     "," +
     longitude +
-    "units=m";
+    "&units=m";
   request({ url: urlForecast, json: true }, (error, response) => {
     if (error) {
       callback("Cannot connect to Weather Services!", error);
