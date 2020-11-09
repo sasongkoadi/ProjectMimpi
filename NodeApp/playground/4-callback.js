@@ -16,3 +16,25 @@ const add = (number1, number2, callback) => {
 add(2, 3, (sum) => {
   console.log(sum);
 });
+
+/*
+callback is function that can call inside function
+
+*/
+const greeting = (callback) => {
+  setTimeout(() => {
+      //This condition when error 
+      callback('Unable to connect', undefined)
+      //This condition when result is true
+      //callback(undefined, [1,2,3])
+  }, 2000);
+}
+//If error is true, it show error message
+//If result is true it show result message
+greeting((error, result) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(result);
+  }
+})
